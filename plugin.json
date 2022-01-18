@@ -1,0 +1,93 @@
+{
+  "name": "custom.python.filechange",
+  "version": "0.010",
+  "type": "python",
+  "entity": "HOST",
+  "processTypeNames": ["LINUX_SYSTEM", "WINDOWS_SYSTEM"],
+  "metricGroup": "tech.Generic.File",
+  "source": {
+    "package": "oneagent_filechange",
+    "className": "FileChangePlugin",
+    "activation": "Singleton",
+    "install_requires": [ ]
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "file_changes_detected",
+        "unit": "Count",
+        "displayname": "Changes detected"
+      }
+    }
+  ],
+  "configUI": {
+    "displayName": "OneAgent File/Directory change monitors",
+    "properties" : [
+      { "key" : "dir_chg_patterns", "displayName": "File patterns for change check", "displayOrder": 1, "displayHint": "List of wildcard patterns for files to be verified for modification time, separated by semicolon."},
+      { "key" : "dir_chg_event_severity", "displayName": "Pattern change event severity", "displayOrder": 2 , "displayHint": "Event severity when file modification is not detected."},
+      { "key" : "dir_chg_modification_minutes", "displayName": "Pattern change modification minutes", "displayOrder": 3 , "displayHint": "Modification threshold in minutes. Event is created if the file is not modified." },
+      { "key" : "dir_chg_event_title", "displayName": "Pattern change event text", "displayOrder": 4 , "displayHint": "Event title, available placeholders [fileName, fileLastModifiedEpoch, dirModificationMinutes, dirPattern]"},
+      { "key" : "dir_chg_event_description", "displayName": "Pattern change event description", "displayOrder": 5, "displayHint": "Event description, available placeholders [fileName, fileLastModifiedEpoch, dirModificationMinutes, dirPattern]" },
+      
+      { "key" : "dir_count_patterns", "displayName": "File patterns for count check", "displayOrder": 21, "displayHint": "List of wildcard patterns for files to be counted, separated by semicolon"},
+      { "key" : "dir_count_limit", "displayName": "Count check limit", "displayOrder": 22, "displayHint": "Maximum allowed number of files for a pattern."},
+      { "key" : "dir_count_event_severity", "displayName": "Pattern count event severity", "displayOrder": 23, "displayHint": "Event severity when file count is over limit." },
+      { "key" : "dir_count_event_title", "displayName": "Pattern count event text", "displayOrder": 24, "displayHint": "Event title, available placeholders [dirPattern, filePatternSize, filePatternSizeLimit]" },
+      { "key" : "dir_count_event_description", "displayName": "Pattern count event description", "displayOrder": 25, "displayHint": "Event description, available placeholders [dirPattern, filePatternSize, filePatternSizeLimit]" }
+    ]
+  },
+  "properties": [
+    {
+      "key": "dir_chg_patterns",
+      "type": "String",
+      "defaultValue": ""
+    },
+    {
+      "key": "dir_chg_event_severity",
+      "type" : "Dropdown",
+      "defaultValue":"Availability",
+      "dropdownValues": ["Availability", "Error", "Slowdown", "Resource", "Custom"]
+      },
+    {
+      "key": "dir_chg_event_title",
+      "type": "String",
+      "defaultValue": "File not changed"
+    },
+    {
+      "key": "dir_chg_event_description",
+      "type": "String",
+      "defaultValue": "Change in file {fileName} of pattern {dirPattern} not detected."
+    },
+    {
+      "key": "dir_chg_modification_minutes",
+      "type": "Integer",
+      "defaultValue": 15
+    },
+    {
+      "key": "dir_count_patterns",
+      "type": "String",
+      "defaultValue": ""
+    },
+    {
+      "key": "dir_count_limit",
+      "type": "Integer",
+      "defaultValue": 10
+    },
+    {
+      "key": "dir_count_event_severity",
+      "type" : "Dropdown",
+      "defaultValue":"Availability",
+      "dropdownValues": ["Availability", "Error", "Slowdown", "Resource", "Custom"]
+      },
+    {
+      "key": "dir_count_event_title",
+      "type": "String",
+      "defaultValue": "Too many files"
+    },
+    {
+      "key": "dir_count_event_description",
+      "type": "String",
+      "defaultValue": "Number of files matching pattern {dirPattern} over limit."
+    }
+  ]
+}
