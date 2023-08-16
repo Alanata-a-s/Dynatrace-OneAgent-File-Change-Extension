@@ -1,6 +1,6 @@
 {
   "name": "custom.python.filechange",
-  "version": "0.010",
+  "version": "0.011",
   "type": "python",
   "entity": "HOST",
   "processTypeNames": ["LINUX_SYSTEM", "WINDOWS_SYSTEM"],
@@ -33,7 +33,9 @@
       { "key" : "dir_count_limit", "displayName": "Count check limit", "displayOrder": 22, "displayHint": "Maximum allowed number of files for a pattern."},
       { "key" : "dir_count_event_severity", "displayName": "Pattern count event severity", "displayOrder": 23, "displayHint": "Event severity when file count is over limit." },
       { "key" : "dir_count_event_title", "displayName": "Pattern count event text", "displayOrder": 24, "displayHint": "Event title, available placeholders [dirPattern, filePatternSize, filePatternSizeLimit]" },
-      { "key" : "dir_count_event_description", "displayName": "Pattern count event description", "displayOrder": 25, "displayHint": "Event description, available placeholders [dirPattern, filePatternSize, filePatternSizeLimit]" }
+      { "key" : "dir_count_event_description", "displayName": "Pattern count event description", "displayOrder": 25, "displayHint": "Event description, available placeholders [dirPattern, filePatternSize, filePatternSizeLimit]" },
+
+      { "key": "allow_frequent_issue_detection", "displayName": "Frequent issue detection allowed", "displayOrder": 30, "displayHint": "Enable or disable frequent issue detection" }
     ]
   },
   "properties": [
@@ -88,6 +90,11 @@
       "key": "dir_count_event_description",
       "type": "String",
       "defaultValue": "Number of files matching pattern {dirPattern} over limit."
+    },
+    {
+      "key": "allow_frequent_issue_detection",
+      "type": "Boolean",
+      "defaultValue": false
     }
   ]
 }

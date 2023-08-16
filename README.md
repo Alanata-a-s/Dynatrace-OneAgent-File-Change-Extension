@@ -26,3 +26,4 @@ Extension monitors independently:
 # ChangeLog
 
 - 0.01 - initial version
+- 0.11 - added configuration option to disable frequent issue detection

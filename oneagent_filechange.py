@@ -35,7 +35,8 @@ class FileChangePlugin(BasePlugin):
                     eventProperties = {
                         "File pattern": dirPattern,
                         "File name": fileName,
-                        "Last modified": datetime.datetime.utcfromtimestamp(fileLastModifiedEpoch).isoformat()
+                        "Last modified": datetime.datetime.utcfromtimestamp(fileLastModifiedEpoch).isoformat(),
+                        "dt.event.allow_frequent_issue_detection": str(self.config["allow_frequent_issue_detection"]).lower()
                     }
                     if dir_event_severity=="Availability":
                         self.results_builder.report_availability_event(description=eventDescription, title=eventTitle, properties=eventProperties, entity_selector=HostSelector())
